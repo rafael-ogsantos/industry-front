@@ -1,0 +1,35 @@
+<a routerLink="/add-course" class="d-flex flex-row-reverse bd-highlight">
+  <button class="btn btn-danger p-2 bd-highlight mt-5" type="submit">
+    <mat-icon aria-hidden="false" >add</mat-icon>
+  </button>
+</a>
+
+<table class="table" *ngIf="courses.length > 0; else emptyTable">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Data de Inicio</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let course of courses">
+      <th scope="row">{{ course.id }}</th>
+      <td>{{ course.name }}</td>
+      <td>{{ course.start_date | date }}</td>
+      <td>
+        <a href="edit-course/{{ course.id }}">
+          <mat-icon aria-hidden="false" aria-label="Editar">edit</mat-icon>
+        </a>
+        <button (click)="destroy(course.id)">
+          <mat-icon aria-hidden="false" style="color: red;">delete</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #emptyTable>
+  Nada a mostrar
+</ng-template>

@@ -1,0 +1,38 @@
+<a routerLink="/add-enrollment" class="d-flex flex-row-reverse bd-highlight">
+  <button class="btn btn-danger p-2 bd-highlight mt-5" type="submit">
+    <mat-icon aria-hidden="false" >add</mat-icon>
+  </button>
+</a>
+
+<table class="table" *ngIf="enrollments.length > 0; else emptyTable">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Aluno</th>
+      <th scope="col">Curso</th>
+      <th scope="col">Ativo</th>
+      <th scope="col">Data de admissão</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let enrollment of enrollments">
+      <th scope="row">{{ enrollment.id }}</th>
+      <td>{{ enrollment.student }}</td>
+      <td>{{ enrollment.course }}</td>
+      <td>{{ enrollment.active == 1 ? 'SIM' : 'NÂO' }}</td>
+      <td>{{ enrollment.created_at | date  }}</td>
+      <td>
+        <a href="edit-enrollment/{{ enrollment.id }}">
+          <mat-icon aria-hidden="false" aria-label="Editar">edit</mat-icon>
+        </a>
+        <button (click)="destroy(enrollment.id)">
+          <mat-icon aria-hidden="false" style="color: red;">delete</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #emptyTable>
+  Nada a mostrar
+</ng-template>

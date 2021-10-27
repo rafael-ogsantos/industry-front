@@ -1,0 +1,46 @@
+<a routerLink="/enrollments">
+  <button class="btn btn-danger p-2 bd-highlight" type="submit">
+    Voltar
+  </button>
+</a>
+
+
+<div class="panel">
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-5">
+        <mat-form-field>
+          <mat-label>Aluno</mat-label>
+          <select matNativeControl formControlName="student_id" required>
+            <option *ngFor="let student of students" value="{{student.id}}">{{ student.name }}</option>
+          </select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-5">
+        <mat-form-field>
+          <mat-label for="name">Curso </mat-label>
+          <select matNativeControl formControlName="course_id" required>
+            <option *ngFor="let course of courses" value="{{course.id}}">{{ course.name }}</option>
+          </select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-5">
+        <mat-form-field>
+          <mat-label>Ativo</mat-label>
+          <select matNativeControl formControlName="active" required>
+            <option value="1">Sim</option>
+            <option value="2">Não</option>
+          </select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row-reverse bd-highlight">
+      <button class="btn btn-danger p-2 bd-highlight mt-5" type="submit">
+        Cadastrar
+      </button>
+    </div>
+  </form>
+</div>

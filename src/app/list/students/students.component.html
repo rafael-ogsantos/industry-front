@@ -1,0 +1,37 @@
+<a routerLink="/add-student" class="d-flex flex-row-reverse bd-highlight">
+  <button class="btn btn-danger p-2 bd-highlight mt-5" type="submit">
+    <mat-icon aria-hidden="false" >add</mat-icon>
+  </button>
+</a>
+
+<table class="table" *ngIf="students.length > 0; else emptyTable">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th scope="col">Senha</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students">
+      <th scope="row">{{ student.id }}</th>
+      <td>{{ student.name }}</td>
+      <td>{{ student.password }}</td>
+      <td>
+        <a href="edit-student/{{ student.id }}">
+          <mat-icon aria-hidden="false" aria-label="Editar">edit</mat-icon>
+        </a>
+        <button (click)="destroy(student.id)">
+          <mat-icon aria-hidden="false" style="color: red;">delete</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #emptyTable>
+  Nada a mostrar
+</ng-template>
+
+
