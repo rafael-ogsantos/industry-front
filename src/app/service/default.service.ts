@@ -21,33 +21,26 @@ export abstract class DefaultService{
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
 
-  // Obtem todos itens
-  get(nameMolel?: string): Observable<any> {
-    return this.httpClient.get(this.url + nameMolel)
+  get(nameModel?: string): Observable<any> {
+    return this.httpClient.get(this.url + nameModel)
       .pipe()
   }
 
-  // Obtem item pelo id
-  getById(id: any, nameMolel: string = ''): Observable<any> {
-    console.log('fghj')
-    return this.httpClient.get(this.url + nameMolel + '/' + id)
+  getById(id: any, nameModel: string = ''): Observable<any> {
+    return this.httpClient.get(this.url + nameModel + '/' + id)
       .pipe()
   }
 
-  // salva um carro
-  save(data: any, nameMolel: string = ''): Observable<any> {
-    return this.httpClient.post(this.url + nameMolel, data)
+  save(data: any, nameModel: string = ''): Observable<any> {
+    return this.httpClient.post(this.url + nameModel, data)
       .pipe()
   }
 
-  // utualiza um carro
-  update(data: any, id: any, nameMolel: string = ''): Observable<any> {
-    console.log(nameMolel)
-    return this.httpClient.post(this.url + nameMolel + '/update/' + id, JSON.stringify(data), this.httpOptions)
+  update(data: any, id: any, nameModel: string = ''): Observable<any> {
+    return this.httpClient.post(this.url + nameModel + '/update/' + id, JSON.stringify(data), this.httpOptions)
       .pipe()
   }
 
-  // deleta um item
   delete(id: any, nameModel: string = '') {
     return this.httpClient.post(this.url + nameModel + '/delete/' + id, this.httpOptions)
       .pipe(
